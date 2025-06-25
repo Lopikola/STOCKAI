@@ -2,11 +2,12 @@
 
 import { useEffect, useState } from 'react'
 import { supabase } from '@/lib/supabase'
+import type { NewsItem, NewsFormData } from '@lib/types'
 
 export default function AdminPage() {
-  const [newsItems, setNewsItems] = useState<any[]>([])
+  const [newsItems, setNewsItems] = useState<NewsItem[]>([])
   const [loading, setLoading] = useState(true)
-  const [form, setForm] = useState({
+  const [form, setForm] = useState<NewsFormData>({
     headline: '',
     ticker: '',
     sentiment: '',
@@ -27,7 +28,7 @@ export default function AdminPage() {
     if (error) {
       console.error('Failed to load news:', error)
     } else {
-      setNewsItems(data || [])
+      setNewsItems((data || []) as NewsItem[])
     }
 
     setLoading(false)
