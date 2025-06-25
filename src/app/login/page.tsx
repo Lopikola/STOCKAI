@@ -34,9 +34,12 @@ export default function LoginPage() {
         <h1 className="text-2xl font-bold mb-4 text-center">Log In</h1>
 
         <form onSubmit={handleLogin} className="space-y-4">
+          <label className="block text-sm" htmlFor="email">Email</label>
           <input
+            id="email"
             type="email"
             placeholder="Email"
+            autoComplete="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
@@ -44,9 +47,12 @@ export default function LoginPage() {
           />
 
           <div className="relative">
+            <label className="block text-sm" htmlFor="password">Password</label>
             <input
+              id="password"
               type={showPassword ? 'text' : 'password'}
               placeholder="Password"
+              autoComplete="current-password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required

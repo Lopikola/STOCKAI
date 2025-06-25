@@ -3,9 +3,10 @@
 import { useEffect, useState } from 'react';
 import { createPagesBrowserClient } from '@supabase/auth-helpers-nextjs';
 import { useRouter } from 'next/navigation';
+import type { NewsItem } from '@lib/types';
 
 export default function Home() {
-  const [newsItems, setNewsItems] = useState<any[]>([]);
+  const [newsItems, setNewsItems] = useState<NewsItem[]>([]);
   const [loading, setLoading] = useState(true);
   const router = useRouter();
 
@@ -33,7 +34,7 @@ export default function Home() {
       if (error) {
         console.error('Failed to fetch news items:', error);
       } else {
-        setNewsItems(data);
+        setNewsItems((data || []) as NewsItem[]);
       }
 
       setLoading(false);
